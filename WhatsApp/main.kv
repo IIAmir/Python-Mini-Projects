@@ -1,0 +1,49 @@
+<MessageScreen>
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        MDToolbar:
+            id: logoToolbar
+            height: dp(50)
+            title: "WhatsApp"
+            margin: 0
+            MDIconButton:
+                icon: 'dots-vertical'
+                on_press:
+                    root.manager.transition.direction = "right"
+            
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: "ScrollEffect"
+            bar_width: 0
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                md_bg_color: app.theme_cls.primary_color
+                spacing: dp(20)
+                MDBoxLayout:
+                    height: dp(60)
+                    size_hint_y: None
+                    ScrollView:
+                        do_scroll_y: False
+                        bar_width: 0
+                        MDBoxLayout:
+                            id: story_layout
+                            adaptive_width: True
+                            spacing: dp(10)
+                            padding: [10,0,0,0]
+                            StoryWithIcon:
+                            StoryWithImage:
+                                text: "l_amr2_l"
+                                source: "pic.jpg"
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    md_bg_color: app.theme_cls.bg_normal
+                    size_hint_y: None
+                    adaptive_height: True
+                    radius: [20,20,0,0]
+                    padding: [0,0,0,40]
+                    MDList:
+                        id: chatTimeLine
+                        spacing: dp(10)

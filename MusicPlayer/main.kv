@@ -1,0 +1,122 @@
+#: import ew kivy.uix.effectwidget
+<MusicScreen>:
+    EffectWidget:
+        effects: [ew.VerticalBlurEffect(size=10), ew.HorizontalBlurEffect(size=10)]
+        FitImage:
+            source: 'test.jpg'
+    MDBoxLayout:
+        orientation: "vertical"
+        padding:['10dp','30dp','10dp','50dp']
+        SongCover:
+            id: sc
+            size: (250,250)
+            size_hint: None,None
+            pos_hint: {'center_x':0.5}
+            RotatingImage:
+                angle: sc.angle
+                source: 'test.jpg'
+                radius: [250,]
+        Widget:
+            size_hint: None,None
+            height: '25dp'
+        Label:
+            text: "Song Name"
+            bold: True
+            font_size: "25dp"
+            size_hint_y: None
+            height: self.texture_size[1]
+        Label:
+            text: "Artist Name"
+            size_hint_y: None
+            height: self.texture_size[1]  
+        MDBoxLayout:
+            orientation: 'vertical'
+            Slider:
+                id: progress
+                color: [.7,0,0,1]
+                min: 0
+                max: 100
+                value: 0 
+                background_width: '10dp'
+                cursor_image: ''
+                cursor_size: ('10dp','10dp')
+                value_track_color: [0,0,0,1]
+                value_track: True
+
+            MDBoxLayout:
+                MDIconButton:
+                    icon: 'restart'
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]
+                MDIconButton:
+                    icon: 'skip-previous-outline'
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]
+                MDIconButton:
+                    icon: 'skip-backward-outline'
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]                    
+                MDIconButton:
+                    id: pause
+                    icon: 'pause' 
+                    on_press: sc.play(progress)
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]                    
+                MDIconButton:
+                    icon: 'skip-forward'
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]                    
+                MDIconButton:
+                    icon: 'skip-next-outline'  
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]
+                MDIconButton:
+                    icon: 'format-list-bulleted'
+                    color: [.7,0,0,1]
+                    size_hint: None,None
+                    user_font_size: '20sp'
+                    theme_text_color: 'Custom'
+                    size: ('20dp','20dp')
+                    text_color: [1,1,1,1]
+
+<MyIcon@MDIconButton>:
+    color: [.7,0,0,1]
+    size_hint: None,None
+    user_font_size: '20sp'
+    theme_text_color: 'Custom'
+    size: ('20dp','20dp')
+    text_color: [1,1,1,1]
+
+<RotatingImage@FitImage>:
+    angle: 0
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: root.angle
+            origin: self.center
+    canvas.after:
+        PopMatrix
